@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+@import "./style/general/utils";
+@import "./style/general/variables";
+@import "./style/pages/home";
+@import "./style/components/header";
+@import "./style/components/footer";
+@import "./style/general/home";

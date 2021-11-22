@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="main.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+  <title>Frontend Mentor | E-commerce product page</title>
+
+</head>
+
+<body>
+  <header class="header">
+    <section class="header__firstSection">
+      <div class="header__firstSection__logo">
+        <img src="images/logo.svg" alt="logo">
+      </div>
+      <div id="hamburger" class="header__firstSection__hamburger">
+        <div class="header__firstSection__hamburger__line"></div>
+        <div class="header__firstSection__hamburger__line"></div>
+        <div class="header__firstSection__hamburger__line"></div>
+      </div>
+
+      <div class="header__firstSection__cart">
+        <img id="cart" src="images/icon-cart.svg" alt="cart">
+        <p id="nbButton"></p>
+      </div>
+      <img class="header__firstSection__avatar" src="images/image-avatar.png" alt="">
+    </section>
+
+    <ul id="menu" class="header__nav">
+      <div id="cross" class="header__nav__cross"></div>
+
+      <li class="header__nav__tab">collections</li>
+      <li class="header__nav__tab">men</li>
+      <li class="header__nav__tab">women</li>
+      <li class="header__nav__tab">about</li>
+      <li class="header__nav__tab">contact</li>
+    </ul>
+  </header>
+
+  <main class="content">
+    <section class="content__carousel">
+      <div id="previous" class="content__carousel__arrow"></div>
+      <div id="next" class="content__carousel__arrow"></div>
+      <div id="carousel" class="content__carousel__containerImg">
+        <img class="content__carousel__containerImg__img" src="images/image-product-1.jpg" alt="">
+        <img class="content__carousel__containerImg__img" src="images/image-product-2.jpg" alt="">
+        <img class="content__carousel__containerImg__img" src="images/image-product-3.jpg" alt="">
+        <img class="content__carousel__containerImg__img" src="images/image-product-4.jpg" alt="">
+      </div>
+    </section>
+
+    <section class="content__product">
+      <p class="content__product__collection">sneaker company</p>
+      <h1 class="content__product__name">fall limited edition sneakers</h1>
+      <h3 class="content__product__description">These low-profile sneakers are your perfect casual wear companion.
+        Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.</h3>
+      <div class="content__product__quantity_price">
+        <article class="content__product__quantity_price__first">
+          <h2 id="priceModel" class="content__product__quantity_price__first__price"></h2>
+          <p class="content__product__quantity_price__first__discount">50%</p>
+          <p class="content__product__quantity_price__first__oldprice">$250.00</p>
+        </article>
+        <article class="content__product__quantity_price__second">
+          <img id="minus" class="content__product__quantity_price__second__minus" src="images/icon-minus.svg" alt="">
+          <p id="number" class="content__product__quantity_price__second__quantity">0</p>
+          <img id="plus" class="content__product__quantity_price__second__plus" src="images/icon-plus.svg" alt="">
+        </article>
+        <button id="buy" class="content__product__quantity_price__third">
+          <img class="content__product__quantity_price__third__cart" src="images/icon-cart.svg" alt=""></img>
+          <p class="content__product__quantity_price__third__add">Add to cart</p>
+        </button>
+      </div>
+    </section>
+
+    <div id="contentCart" class="content__cart">
+      <p class="content__cart__p">cart</p>
+      <div id="contentNb" class="content__cart__nb">
+        <!-- <img class="content__cart__nb__imgProduct" src="images/image-product-1.jpg" alt=""> -->
+        <div class="content__cart__nb__price">
+          <p id="emptyCart" style="text-align: center;">Your cart is empty !</p>
+          <p id="detailsCart" class="content__cart__nb__price__detailsCart"><span id="name"></span><br><span id="price"></span><span id="quantity"></span></p>
+          <p id="priceTotal" class="content__cart__nb__price__total"></p>
+        </div>
+        <div id="deleteCart" class="content__cart__nb__delete"><img src="images/icon-delete.svg" alt=""></div>
+      </div>
+      <button id="checkoutCart" class="content__cart__checkoutCart">Checkout</button>
+    </div>
+
+    <div id="shadow"></div>
+  </main>
+
+  <footer class="footer">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Eliott Raheriarisoa</a>.
+  </footer>
+
+  <script>
+    let plus = document.getElementById('plus');
+    let minus = document.getElementById('minus');
+    let number = document.getElementById('number');
+    let newNb = 0;
+
+    let previous = document.getElementById('previous');
+    let next = document.getElementById('next');
+    let img = document.getElementsByClassName('content__carousel__containerImg__img');
+    let carousel = document.getElementById('carousel');
+
+    let i = 0;
+    let transform = -100;
+
+    let buy = document.getElementById('buy');
+    let nbButton = document.getElementById('nbButton');
+    var div = document.createElement('div');
+    var imgCart = document.createElement('img');
+    var quantity = document.getElementById('quantity');
+    var priceTotal = document.getElementById('priceTotal');
+    var price = document.getElementById('price');
+    var nameModel = document.getElementById('name');
+
+    let cart = document.getElementById('cart');
+    let content_cart = document.getElementById('contentCart');
+    let contentNb = document.getElementById('contentNb');
+    var p = document.createElement('p');
+
+    let deleteCart = document.getElementById('deleteCart');
+
+    let emptyCart = document.getElementById('emptyCart');
+    let detailsCart = document.getElementById('detailsCart');
+
+    let priceModel = document.getElementById('priceModel');
+    priceModel1 = 125;
+    priceModel.innerText = '$' + priceModel1.toFixed(2);
+    price.innerText = '$' + priceModel1.toFixed(2) + " x ";
+
+    let hamburger = document.getElementById('hamburger');
+    let menu = document.getElementById('menu');
+    let cross = document.getElementById('cross');
+
+    let shadow = document.getElementById('shadow');
+
+    plus.addEventListener('click', function () {
+      number.innerText = parseInt(newNb) + 1;
+      newNb = number.textContent;
+    })
+
+    minus.addEventListener('click', function () {
+      if (number.textContent != 0) {
+        number.innerText = parseInt(newNb) - 1;
+        newNb = number.textContent;
+      }
+    })
+
+    //carousel
+    next.addEventListener('click', function () {
+
+      if (i < img.length) {
+        carousel.style.transform = "translateX(" + transform + "%)";
+        transform -= 100;
+        i++;
+      }
+      if (i == img.length) {
+        carousel.style.transform = "translateX(0%)";
+        transform = -100;
+        i = 0;
+      }
+    })
+
+    previous.addEventListener('click', function () {
+      if (i == 0) {
+        transform = img.length * -100;
+        carousel.style.transform = "translateX(" + transform + "%)";
+        i = img.length;
+      }
+      if (i > 0) {
+        transform -= -100;
+        carousel.style.transform = "translateX(" + transform + "%)";
+        i--;
+      }
+    })
+
+
+    //button cart
+
+    buy.addEventListener('click', function () {
+
+      if (newNb != 0) {
+        nbButton.innerText = newNb;
+        quantity.innerText = newNb;
+        priceTotal.innerText = "Total : " + newNb * parseInt(priceModel1) + "$";
+        checkoutCart.style.display = "block";
+        emptyCart.style.display = "none";
+        detailsCart.style.display = "block";
+        deleteCart.style.display = "block";
+        priceTotal.style.display = "block";
+
+        nbButton.style.display = "flex";
+        div.style.display = "flex";
+        div.style.justifyContent = "space-between";
+        imgCart.src = "images/image-product-1.jpg";
+        imgCart.classList.add('content__cart__nb__imgProduct');
+        
+        contentNb.insertBefore(div, contentNb.childNodes[1] )
+        div.appendChild(imgCart);
+
+        nameModel.innerText= "Limited Edition Sneakers";
+      }
+    })
+
+
+    //cart
+
+    cart.addEventListener('click', function () {
+      if(content_cart.style.opacity == 0){
+        content_cart.style.transform = "translateY(0)";
+        content_cart.style.opacity = 1;
+        content_cart.style.zIndex = 10;
+      }
+      else if(content_cart.style.opacity == 1){
+        content_cart.style.transform = "translateY(-2rem)";
+        content_cart.style.opacity = 0;
+        content_cart.style.zIndex = 0;
+      }
+    })
+
+
+    //delete button
+    deleteCart.addEventListener('click', function (){
+      number.innerText = 0;
+      newNb = 0;
+      quantity.innerText = 0;
+      imgCart.parentNode.removeChild(imgCart);
+      checkoutCart.style.display = "none";
+      p.innerText = "Your cart is empty.";
+      deleteCart.style.display = "none";
+      detailsCart.style.display = "none";
+      emptyCart.style.display = "block";
+      priceTotal.style.display = "none";
+      nbButton.innerText = 0;
+      nbButton.style.display = "none";
+      priceTotal.innerText = 0 + "$";
+    })
+
+    
+    //hamburger
+
+    hamburger.addEventListener('click', function(){
+      menu.style.transform = "translateX(0)";
+      document.body.style.overflow = "hidden";
+      shadow.style.display = "block";
+    })
+
+
+    //cross
+    cross.addEventListener('click', function(){
+      menu.style.transform = "translateX(-150%)";
+      document.body.style.overflow = "scroll";
+      shadow.style.display = "none";
+    })
+
+    shadow.addEventListener('click', function(){
+      menu.style.transform = "translateX(-150%)";
+      document.body.style.overflow = "scroll";
+      shadow.style.display = "none";
+    })
+  </script>
+</body>
+
+</html>
