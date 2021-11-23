@@ -211,6 +211,7 @@
   background-color: white;
   -webkit-transition: 0.15s;
   transition: 0.15s;
+  right: 0;
 }
 
 .content__carousel__arrow:nth-child(1) {
