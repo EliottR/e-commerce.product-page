@@ -176,6 +176,11 @@
   padding: 0.5rem 0;
 }
 
+.header__nav__tab a {
+  text-decoration: none;
+  color: black;
+}
+
 .footer {
   font-family: "Kumbh Sans";
   font-size: 11.5px;
