@@ -115,7 +115,7 @@
     let carousel = document.getElementById('carousel');
 
     let i = 0;
-    let transform = -100;
+    let transform = 0;
 
     let buy = document.getElementById('buy');
     let nbButton = document.getElementById('nbButton');
@@ -162,25 +162,25 @@
     //carousel
     next.addEventListener('click', function () {
 
-      if (i < img.length) {
-        carousel.style.transform = "translateX(" + transform + "%)";
+      if (i < img.length-1) {
         transform -= 100;
+        carousel.style.transform = "translateX(" + transform + "%)";
         i++;
       }
-      if (i == img.length) {
+      else if (i == img.length-1) {
         carousel.style.transform = "translateX(0%)";
-        transform = -100;
+        transform = 0;
         i = 0;
       }
     })
 
     previous.addEventListener('click', function () {
       if (i == 0) {
-        transform = img.length * -100;
+        transform = (img.length-1) * -100;
+        i = img.length-1;
         carousel.style.transform = "translateX(" + transform + "%)";
-        i = img.length;
       }
-      if (i > 0) {
+      else if (i > 0) {
         transform -= -100;
         carousel.style.transform = "translateX(" + transform + "%)";
         i--;
