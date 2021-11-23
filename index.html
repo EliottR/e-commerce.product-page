@@ -223,6 +223,8 @@
         content_cart.style.transform = "translateY(0)";
         content_cart.style.opacity = 1;
         content_cart.style.zIndex = 10;
+        shadow.style.height = document.body.clientHeight + "px";
+        shadow.style.display = "block";
       }
       else if(content_cart.style.opacity == 1){
         content_cart.style.transform = "translateY(-2rem)";
@@ -256,6 +258,7 @@
       menu.style.transform = "translateX(0)";
       document.body.style.overflow = "hidden";
       shadow.style.display = "block";
+      shadow.style.height = document.body.clientHeight + "px";
     })
 
 
@@ -270,6 +273,12 @@
       menu.style.transform = "translateX(-150%)";
       document.body.style.overflow = "scroll";
       shadow.style.display = "none";
+
+      if(content_cart.style.opacity == 1){
+        content_cart.style.transform = "translateY(-2rem)";
+        content_cart.style.opacity = 0;
+        content_cart.style.zIndex = 0;
+      }
     })
   </script>
 </body>
