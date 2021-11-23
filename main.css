@@ -359,6 +359,8 @@
 .content__product__quantity_price__second__plus, .content__product__quantity_price__second__minus {
   cursor: pointer;
   padding: 0.5rem;
+  -ms-touch-action: none;
+      touch-action: none;
 }
 
 .content__product__quantity_price__third {

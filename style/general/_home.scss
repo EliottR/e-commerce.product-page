@@ -134,6 +134,7 @@
                 &__plus, &__minus{
                     cursor: pointer;
                     padding: 0.5rem;
+                    touch-action: none;
                 }
             }
 
