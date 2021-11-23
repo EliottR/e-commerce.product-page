@@ -1,41 +1,9 @@
-// .header{
-//     background-color: red;
-//     max-width: 1300px;
-//     display: flex;
-//     margin: 0 auto;
-
-//     &__logo{
-//         margin-right: 2rem;
-//     }
-
-//     &__nav{
-//         display: flex;
-//         flex-direction: row;
-//         align-items: flex-end;
-//         background-color: green;
-//         justify-content: space-around;
-
-//         &__tab{
-//             text-decoration: none;
-//             list-style: none;
-//             text-transform: capitalize;
-//             margin: 0 1rem;
-//         }
-//     }
-
-//     &__cart{
-//         width: 1.5rem;
-//         height: 1.5rem;
-//     }
-
-//     &__avatar{
-//         width: 2rem;
-//         height: 2rem;
-//     }
-// }
-
 .header{
-    &__firstSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__section{
         display: flex;
         height: 1.2rem;
         align-items: center;
@@ -44,14 +12,12 @@
         margin-top:2rem;
         margin-bottom: 3rem;
         height: 4rem;
-
         &__logo{
             margin-left: 1rem;
-            flex-basis: 120px;
             flex-grow: 1;
             height: auto;
         }
-    
+
         &__hamburger{
             display: flex;
             flex-direction: column;
@@ -62,7 +28,7 @@
             order: -1;
             cursor: pointer;
             padding: 0.5rem;
-    
+
             &__line{
                 display: block;
                 width: 100%;
@@ -71,21 +37,90 @@
                 background-color: rgba(0, 0, 0, 0.55);
             }
         }
+        &__nav{
+            display: block;
+            position: absolute;
+            background-color: $white;
+            width: 18rem;
+            top: 0;
+            z-index: 100;
+            padding-left: 1rem;
+            transform: translateX(-21rem);
+            transition: 0.5s ease transform;
+            left: 0;
+
+            &__cross{
+                position: relative;
+                margin-top: 1rem;
+                width: 2rem;
+                height: 2rem;
+                margin-bottom: 2rem;
+                cursor: pointer;
+
+                &:before, &:after{
+                    position: absolute;
+                    left: 15px;
+                    content: ' ';
+                    height: 1.5rem;
+                    width: 2px;
+                    background-color: $dark-blue;
+                }
+
+                &:before{
+                    transform: rotate(45deg);
+                }
+
+                &:after{
+                    transform: rotate(-45deg);
+                }
+
+                &__line{
+                    position: absolute;
+                    display: block;
+                    width: 3rem;
+                    height: 2px;
+                    border-radius: 10px;
+                    background-color: rgba(0, 0, 0, 0.55);
+                    transform: rotate(45deg);
+                    transform-origin: left;
+
+                    &:last-child{
+                        transform-origin: right;
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+
+
+            &__tab{
+                font-size: 14px;
+                list-style: none;
+                text-transform: capitalize;
+                font-family: "Kumbh Sans";
+                font-weight: 700;
+                padding: 0.5rem 0;
+
+                a{
+                    text-decoration: none;
+                    color: $black;
+                }
+            }
+        }
         
         &__cart{
             margin: 0 2rem;
             display: flex;
             align-items: center;
             // background-color: red;
-    
-    
+
+
             img{
                 cursor: pointer;
                 padding: 0.25rem;
                 width: 1.5rem;
                 height: 1.5rem;
             }
-    
+
             p{
                 position: relative;
                 font-family: "Kumbh Sans";
@@ -105,79 +140,98 @@
                 display: none;
             }
         }
-    
+
         &__avatar{
             width: 2.25rem;
             height: 2.25rem;
+            transition: 0.1s outline;
+            outline: $orange;
+            cursor: pointer;
+            &:hover{
+                outline: 3px solid $orange;
+                border-radius: 50%;
+            }
+        }
+
+        &__line{
+            display: none;
         }
     }
 
-    &__nav{
-        display: block;
-        position: absolute;
-        background-color: $white;
-        width: 18rem;
-        top: 0;
-        z-index: 100;
-        padding-left: 1rem;
-        transform: translateX(-150%);
-        transition: 0.5s ease;
+    @media screen and (min-width: 850px) {
+        .header{
+            &__section{
+                max-width: 1440px;
+                margin: 0 auto;
+                padding: 3rem 0;
+            
+                &__logo{
+                    margin-left: 0rem;
+                    flex-grow: 0;
+                    height: auto;
+                    margin-right: 1rem;
+                }
+                
+                &__hamburger{
+                    display: none;
+                }
+                
+                &__cart{
+                    margin: 0 5rem;
+                }
+            
+                &__nav{
+                    display: flex;
+                    position: relative;
+                    background-color: transparent;
+                    width: 18rem;
+                    top: 0;
+                    z-index: 100;
+                    padding-left: 1rem;
+                    transform: translateX(0);
+                    transition: 0.5s ease;
+                    flex-grow: 1;
+            
+                    &__cross{
+                        display: none;
+                    }
+            
+            
+                    &__tab{
+                        font-size: 14px;
+                        list-style: none;
+                        text-transform: capitalize;
+                        font-family: "Kumbh Sans";
+                        font-weight: 400;
+                        color: $dark-blue;
+                        padding: 0 0.5rem;
 
-        &__cross{
-            position: relative;
-            margin-top: 1rem;
-            width: 2rem;
-            height: 2rem;
-            margin-bottom: 2rem;
-            cursor: pointer;
+                        
+            
+                        a{
+                            text-decoration: none;
+                            color: $black;
+                            padding: 0.5rem;
+                            transition: 0.5s ease border;
+                            border-bottom: 0;
 
-            &:before, &:after{
-                position: absolute;
-                left: 15px;
-                content: ' ';
-                height: 1.5rem;
-                width: 2px;
-                background-color: $dark-blue;
-            }
-
-            &:before{
-                transform: rotate(45deg);
-            }
-
-            &:after{
-                transform: rotate(-45deg);
-            }
-
-            &__line{
-                position: absolute;
-                display: block;
-                width: 3rem;
-                height: 2px;
-                border-radius: 10px;
-                background-color: rgba(0, 0, 0, 0.55);
-                transform: rotate(45deg);
-                transform-origin: left;
-
-                &:last-child{
-                    transform-origin: right;
-                    transform: rotate(-45deg);
+                            &:hover{
+                                bottom: 0;
+                                border-bottom: 3px solid $orange;
+                            }
+                        }
+                    }
                 }
             }
         }
 
-
-        &__tab{
-            font-size: 14px;
-            list-style: none;
-            text-transform: capitalize;
-            font-family: "Kumbh Sans";
-            font-weight: 700;
-            padding: 0.5rem 0;
-
-            a{
-                text-decoration: none;
-                color: $black;
-            }
+        &__line{
+            display: block;
+            width: 95%;
+            max-width: 1440px;
+            height: 1px;
+            background-color: $dark-blue;
+            margin-bottom: 5rem;
         }
     }
 }

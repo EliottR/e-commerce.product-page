@@ -18,32 +18,32 @@
 
 <body>
   <header class="header">
-    <section class="header__firstSection">
-      <div class="header__firstSection__logo">
+    <section class="header__section">
+      <div class="header__section__logo">
         <a href="#"><img src="images/logo.svg" alt="logo"></a>
       </div>
-      <div id="hamburger" class="header__firstSection__hamburger">
-        <div class="header__firstSection__hamburger__line"></div>
-        <div class="header__firstSection__hamburger__line"></div>
-        <div class="header__firstSection__hamburger__line"></div>
+      <div id="hamburger" class="header__section__hamburger">
+        <div class="header__section__hamburger__line"></div>
+        <div class="header__section__hamburger__line"></div>
+        <div class="header__section__hamburger__line"></div>
       </div>
-
-      <div class="header__firstSection__cart">
+      <ul id="menu" class="header__section__nav">
+        <div id="cross" class="header__section__nav__cross"></div>
+  
+        <li class="header__section__nav__tab"><a href="#">collections</a></li>
+        <li class="header__section__nav__tab"><a href="#">men</a></li>
+        <li class="header__section__nav__tab"><a href="#">women</a></li>
+        <li class="header__section__nav__tab"><a href="#">about</a></li>
+        <li class="header__section__nav__tab"><a href="#">contact</a></li>
+      </ul>
+      <div class="header__section__cart">
         <img id="cart" src="images/icon-cart.svg" alt="cart">
         <p id="nbButton"></p>
       </div>
-      <img class="header__firstSection__avatar" src="images/image-avatar.png" alt="">
+      <img class="header__section__avatar" src="images/image-avatar.png" alt="">
     </section>
 
-    <ul id="menu" class="header__nav">
-      <div id="cross" class="header__nav__cross"></div>
-
-      <li class="header__nav__tab"><a href="#">collections</a></li>
-      <li class="header__nav__tab"><a href="#">men</a></li>
-      <li class="header__nav__tab"><a href="#">women</a></li>
-      <li class="header__nav__tab"><a href="#">about</a></li>
-      <li class="header__nav__tab"><a href="#">contact</a></li>
-    </ul>
+    <div class="header__line"></div>
   </header>
 
   <main class="content">
@@ -146,6 +146,8 @@
     let cross = document.getElementById('cross');
 
     let shadow = document.getElementById('shadow');
+
+    // let imgChidren = document.getElementsByClassName('content__carousel__containerImg__img');
 
     plus.addEventListener('click', function () {
       number.innerText = parseInt(newNb) + 1;
@@ -256,7 +258,7 @@
 
     hamburger.addEventListener('click', function(){
       menu.style.height = document.body.clientHeight + "px";
-      menu.style.transform = "translateX(0)";
+      menu.style.transform = "translateX(0rem)";
       document.body.style.overflow = "hidden";
       shadow.style.display = "block";
       shadow.style.height = document.body.clientHeight + "px";
@@ -265,13 +267,15 @@
 
     //cross
     cross.addEventListener('click', function(){
-      menu.style.transform = "translateX(-150%)";
+      menu.style.removeProperty("transform");
+      menu.style.removeProperty("height");
       document.body.style.overflow = "scroll";
       shadow.style.display = "none";
     })
 
     shadow.addEventListener('click', function(){
-      menu.style.transform = "translateX(-150%)";
+      menu.style.removeProperty("transform");
+      menu.style.removeProperty("height");
       document.body.style.overflow = "scroll";
       shadow.style.display = "none";
 
@@ -281,6 +285,29 @@
         content_cart.style.zIndex = 0;
       }
     })
+
+    // window.addEventListener("resize", function() {
+    //   if (document.body.clientWidth > 850) {
+
+
+    //     console.log("bonjour")
+    //   } 
+    //   else {
+    //     console.log("au revoir")
+    //   }
+    // })
+
+    if (document.body.clientWidth > 850) {
+        var clone = carousel.firstElementChild.cloneNode(true)
+        carousel.appendChild(clone);
+        carousel.insertBefore(clone, carousel.childNodes[1] )
+
+
+        console.log("bonjour")
+      } 
+      else {
+        console.log("au revoir")
+      }
   </script>
 </body>
 
