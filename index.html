@@ -255,6 +255,7 @@
     //hamburger
 
     hamburger.addEventListener('click', function(){
+      menu.style.height = document.body.clientHeight + "px";
       menu.style.transform = "translateX(0)";
       document.body.style.overflow = "hidden";
       shadow.style.display = "block";
