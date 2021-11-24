@@ -257,19 +257,18 @@
 
 @media screen and (min-width: 850px) {
     .content{
-        max-width: 1440px;
+        max-width: 1200px;
         margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        align-items: center;
 
         &__carousel{
-            // width: 32rem;
             height: unset;
-            // overflow: hidden;
             position: relative;
-            // display: flex;
-            // align-items: center;
-            // flex-direction: row-reverse;
             display: block;
-            // border-radius: 1.5rem;
+            margin-right: 2rem;
     
             &__arrow{
                 display: none;
@@ -299,11 +298,13 @@
     
             &__containerImg{
                 transition: 0.5s ease;
-                width: 32rem;
+                // width: 32rem;
+                width: 100%;
+                max-width: 32rem;
                 display: flex;
                 justify-content: space-between;
                 flex-wrap: wrap;
-                gap: 1rem;
+                row-gap: 1rem;
     
                 &__img{
                     // position: absolute;
@@ -315,13 +316,12 @@
                     transition: 0.5s ease;
 
                     &:first-child{
-                        border-radius: 1.5rem;
-                        grid-column: span 4;
+                        border-radius: 2rem;
                     }
 
                     &:not(:first-child){
-                        width: 7rem;
-                        height: 7rem;
+                        width: 21%;
+                        max-width: 7rem;
                         border-radius: 0.5rem;
 
                         &:hover{
@@ -334,80 +334,45 @@
         }
     
         &__product{
-            width: 95%;
-            margin: 0 auto;
-            font-family: "Kumbh Sans";
+            width: 85%;
+            padding-right: 5rem;
     
             &__collection{
-                text-transform: uppercase;
-                font-weight: 700;
-                color: $orange;
-                font-size: 13px;
-                letter-spacing: 1px;
-                margin: 2rem 0;
+                margin: 0;
+                margin-top: 0;
             }
             &__name{
-                text-transform: capitalize;
-                font-weight: 700;
-                font-size: 2.4rem;
-                line-height: 1.4;
-                margin-top: -1rem;
+                margin-top: 1rem;
                 margin-bottom: 2.5rem;
             }
     
-            &__description{
-                font-size: 0.9rem;
-                font-weight: 400;
-                line-height: 1.7;
-                text-align: left;
-                margin-bottom: 1.5rem;
-                color: $dark-blue;
-            }
-    
             &__quantity_price{
-                display: flex;
-                flex-direction: column;
+                flex-direction: row;
+                flex-wrap: wrap;
+                row-gap: 0.75rem;
+                column-gap: 0.75rem;
+                width: 25rem;
     
                 &__first{
-                    display: flex;
-                    width: 100%;
-                    flex-direction: row;
-                    align-items: center;
+                    width: 7rem;
+                    flex-wrap: wrap;
+                    row-gap: 1rem;
+                    margin-right: 17rem;
                     justify-content: space-between;
     
                     &__price{
-                        font-size: 1rem;
-                        margin-right: 4rem;
-                    }
-    
-                    &__discount{
-                        font-size: 12px;
-                        font-weight: 700;
-                        color: $orange;
-                        background-color: $pale-orange;
-                        padding: 0.3rem;
-                        border-radius: 0.25rem;
+                        margin-right: 0;
                     }
     
                     &__oldprice{
-                        font-weight: 700;
-                        font-size: 12px;
-                        color: $grayish-blue;
-                        text-decoration: line-through;
-                        flex-grow: 1;
-                        text-align: right;
+                        text-align: left;
                     }
                 }
     
                 &__second{
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: space-between;
-                    padding: 1rem 0.5rem;
-                    background-color: rgb(241, 241, 241);
-                    margin: 0.75rem 0;
-                    border-radius: 0.25rem;
+                    width: 7rem;
+                    padding: 0.5rem 0rem;
+                    margin: 0;
     
                     &__quantity{
                         font-weight: 700;
@@ -422,17 +387,8 @@
                 }
     
                 &__third{
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    background-color: $orange;
-                    color: $white;
-                    padding: 0.75rem;
-                    border: none;
-                    border-radius: 0.25rem;
-                    margin-bottom: 3rem;
-                    cursor: pointer;
+                    width: 16rem;
+                    margin-bottom: 0;
     
                     &__cart{
                         color: $white;
@@ -533,5 +489,12 @@
         opacity: 0.3;
         z-index: 9;
         display: none;
+    }
+}
+
+@media screen and (max-width: 1240px) {
+    .content{
+        margin: 0 1rem;
+        margin-bottom: 2rem;
     }
 }
