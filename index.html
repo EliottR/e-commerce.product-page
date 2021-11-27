@@ -29,7 +29,7 @@
       </div>
       <ul id="menu" class="header__section__nav">
         <div id="cross" class="header__section__nav__cross"></div>
-  
+
         <li class="header__section__nav__tab"><a href="#">collections</a></li>
         <li class="header__section__nav__tab"><a href="#">men</a></li>
         <li class="header__section__nav__tab"><a href="#">women</a></li>
@@ -51,23 +51,20 @@
       <div id="previous" class="content__carousel__arrow"></div>
       <div id="next" class="content__carousel__arrow"></div>
       <div id="carousel" class="content__carousel__containerImg">
-        <img class="content__carousel__containerImg__img" src="images/image-product-1.jpg" alt="">
-        <img class="content__carousel__containerImg__img" src="images/image-product-2.jpg" alt="">
-        <img class="content__carousel__containerImg__img" src="images/image-product-3.jpg" alt="">
-        <img class="content__carousel__containerImg__img" src="images/image-product-4.jpg" alt="">
+        <div id="containerImg" class="content__carousel__containerImg__div"></div>
+        <div id="containerThumbnails" class="content__carousel__containerImg__divThumbnails"></div>
       </div>
     </section>
 
     <section class="content__product">
-      <p class="content__product__collection">sneaker company</p>
-      <h1 class="content__product__name">fall limited edition sneakers</h1>
-      <h3 class="content__product__description">These low-profile sneakers are your perfect casual wear companion.
-        Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.</h3>
+      <p id="collectionProduct" class="content__product__collection"></p>
+      <h1 id="nameProduct" class="content__product__name"></h1>
+      <h3 id="descriptionProduct" class="content__product__description"></h3>
       <div class="content__product__quantity_price">
         <article class="content__product__quantity_price__first">
-          <h2 id="priceModel" class="content__product__quantity_price__first__price"></h2>
-          <p class="content__product__quantity_price__first__discount">50%</p>
-          <p class="content__product__quantity_price__first__oldprice">$250.00</p>
+          <h2 id="priceProduct" class="content__product__quantity_price__first__price"></h2>
+          <p id="discountProduct" class="content__product__quantity_price__first__discount"></p>
+          <p id="oldPriceProduct" class="content__product__quantity_price__first__oldprice"></p>
         </article>
         <article class="content__product__quantity_price__second">
           <img id="minus" class="content__product__quantity_price__second__minus" src="images/icon-minus.svg" alt="">
@@ -84,19 +81,19 @@
     <div id="contentCart" class="content__cart">
       <p class="content__cart__p">cart</p>
       <div id="contentNb" class="content__cart__nb">
-        <!-- <img class="content__cart__nb__imgProduct" src="images/image-product-1.jpg" alt=""> -->
         <div class="content__cart__nb__price">
           <p id="emptyCart" style="text-align: center;">Your cart is empty !</p>
-          <p id="detailsCart" class="content__cart__nb__price__detailsCart"><span id="name"></span><br><span id="price"></span><span id="quantity"></span></p>
+          <p id="detailsCart" class="content__cart__nb__price__detailsCart"><span id="name"></span><br><span
+              id="priceCard"></span><span id="quantity"></span></p>
           <p id="priceTotal" class="content__cart__nb__price__total"></p>
         </div>
         <div id="deleteCart" class="content__cart__nb__delete"><img src="images/icon-delete.svg" alt=""></div>
       </div>
       <button id="checkoutCart" class="content__cart__checkoutCart">Checkout</button>
     </div>
-
-    <div id="shadow"></div>
   </main>
+  <div id="shadow"></div>
+
 
   <footer class="footer">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
@@ -104,6 +101,7 @@
   </footer>
 
   <script>
+    //variables
     let plus = document.getElementById('plus');
     let minus = document.getElementById('minus');
     let number = document.getElementById('number');
@@ -123,7 +121,7 @@
     var imgCart = document.createElement('img');
     var quantity = document.getElementById('quantity');
     var priceTotal = document.getElementById('priceTotal');
-    var price = document.getElementById('price');
+    var priceCard = document.getElementById('priceCard');
     var nameModel = document.getElementById('name');
 
     let cart = document.getElementById('cart');
@@ -136,18 +134,80 @@
     let emptyCart = document.getElementById('emptyCart');
     let detailsCart = document.getElementById('detailsCart');
 
-    let priceModel = document.getElementById('priceModel');
-    priceModel1 = 125;
-    priceModel.innerText = '$' + priceModel1.toFixed(2);
-    price.innerText = '$' + priceModel1.toFixed(2) + " x ";
-
     let hamburger = document.getElementById('hamburger');
     let menu = document.getElementById('menu');
     let cross = document.getElementById('cross');
 
     let shadow = document.getElementById('shadow');
 
-    // let imgChidren = document.getElementsByClassName('content__carousel__containerImg__img');
+    var valeurResize = false;
+
+    var divImg = document.getElementById("containerImg");
+    var divImgThumbnails = document.getElementById("containerThumbnails");
+
+    let index = 0;
+    var lastElement;
+
+    var nameProduct = document.getElementById('nameProduct');
+    var collectionProduct = document.getElementById('collectionProduct');
+    var priceProduct = document.getElementById('priceProduct');
+    var discountProduct = document.getElementById('discountProduct');
+    var oldPriceProduct = document.getElementById('oldPriceProduct');
+    var descriptionProduct = document.getElementById('descriptionProduct');
+
+    var priceModel;
+
+
+    //button cart
+    buy.addEventListener('click', function () {
+
+      if (newNb != 0) {
+        nbButton.innerText = newNb;
+        quantity.innerText = newNb;
+        priceTotal.innerText = "Total : " + newNb * parseInt(priceModel) + "$";
+        checkoutCart.style.display = "block";
+        emptyCart.style.display = "none";
+        detailsCart.style.display = "block";
+        deleteCart.style.display = "block";
+        priceTotal.style.display = "block";
+
+        nbButton.style.display = "flex";
+        div.style.display = "flex";
+        div.style.justifyContent = "space-between";
+        imgCart.src = "images/image-product-1.jpg";
+        imgCart.classList.add('content__cart__nb__imgProduct');
+
+        contentNb.insertBefore(div, contentNb.childNodes[1])
+        div.appendChild(imgCart);
+
+        nameModel.innerText = "Limited Edition Sneakers";
+      }
+    })
+
+    //cart
+    cart.addEventListener('click', function () {
+      if (content_cart.style.opacity == 0) {
+        content_cart.style.display = "flex";
+
+        setTimeout(function () {
+          content_cart.style.transform = "translateY(0)";
+          content_cart.style.opacity = 1;
+          content_cart.style.zIndex = 10;
+          shadow.style.height = document.body.clientHeight + "px";
+          shadow.style.display = "block";
+        }, 1);
+
+      }
+      else if (content_cart.style.opacity == 1) {
+        content_cart.style.transform = "translateY(-2rem)";
+        content_cart.style.opacity = 0;
+        content_cart.style.zIndex = 0;
+
+        setTimeout(function () {
+          content_cart.style.display = "none";
+        }, 500);
+      }
+    })
 
     plus.addEventListener('click', function () {
       number.innerText = parseInt(newNb) + 1;
@@ -161,83 +221,8 @@
       }
     })
 
-    //carousel
-    next.addEventListener('click', function () {
-
-      if (i < img.length-1) {
-        transform -= 100;
-        carousel.style.transform = "translateX(" + transform + "%)";
-        i++;
-      }
-      else if (i == img.length-1) {
-        carousel.style.transform = "translateX(0%)";
-        transform = 0;
-        i = 0;
-      }
-    })
-
-    previous.addEventListener('click', function () {
-      if (i == 0) {
-        transform = (img.length-1) * -100;
-        i = img.length-1;
-        carousel.style.transform = "translateX(" + transform + "%)";
-      }
-      else if (i > 0) {
-        transform -= -100;
-        carousel.style.transform = "translateX(" + transform + "%)";
-        i--;
-      }
-    })
-
-
-    //button cart
-
-    buy.addEventListener('click', function () {
-
-      if (newNb != 0) {
-        nbButton.innerText = newNb;
-        quantity.innerText = newNb;
-        priceTotal.innerText = "Total : " + newNb * parseInt(priceModel1) + "$";
-        checkoutCart.style.display = "block";
-        emptyCart.style.display = "none";
-        detailsCart.style.display = "block";
-        deleteCart.style.display = "block";
-        priceTotal.style.display = "block";
-
-        nbButton.style.display = "flex";
-        div.style.display = "flex";
-        div.style.justifyContent = "space-between";
-        imgCart.src = "images/image-product-1.jpg";
-        imgCart.classList.add('content__cart__nb__imgProduct');
-        
-        contentNb.insertBefore(div, contentNb.childNodes[1] )
-        div.appendChild(imgCart);
-
-        nameModel.innerText= "Limited Edition Sneakers";
-      }
-    })
-
-
-    //cart
-
-    cart.addEventListener('click', function () {
-      if(content_cart.style.opacity == 0){
-        content_cart.style.transform = "translateY(0)";
-        content_cart.style.opacity = 1;
-        content_cart.style.zIndex = 10;
-        shadow.style.height = document.body.clientHeight + "px";
-        shadow.style.display = "block";
-      }
-      else if(content_cart.style.opacity == 1){
-        content_cart.style.transform = "translateY(-2rem)";
-        content_cart.style.opacity = 0;
-        content_cart.style.zIndex = 0;
-      }
-    })
-
-
     //delete button
-    deleteCart.addEventListener('click', function (){
+    deleteCart.addEventListener('click', function () {
       number.innerText = 0;
       newNb = 0;
       quantity.innerText = 0;
@@ -253,10 +238,8 @@
       priceTotal.innerText = 0 + "$";
     })
 
-    
     //hamburger
-
-    hamburger.addEventListener('click', function(){
+    hamburger.addEventListener('click', function () {
       menu.style.height = document.body.clientHeight + "px";
       menu.style.transform = "translateX(0rem)";
       document.body.style.overflow = "hidden";
@@ -264,50 +247,194 @@
       shadow.style.height = document.body.clientHeight + "px";
     })
 
-
     //cross
-    cross.addEventListener('click', function(){
+    cross.addEventListener('click', function () {
       menu.style.removeProperty("transform");
-      menu.style.removeProperty("height");
+      setTimeout(function () {
+        menu.style.removeProperty("height");
+      }, 500);
+
+
       document.body.style.overflow = "scroll";
       shadow.style.display = "none";
     })
 
-    shadow.addEventListener('click', function(){
+    //shadow
+    shadow.addEventListener('click', function () {
       menu.style.removeProperty("transform");
-      menu.style.removeProperty("height");
+      setTimeout(function () {
+        menu.style.removeProperty("height");
+      }, 500);
       document.body.style.overflow = "scroll";
       shadow.style.display = "none";
 
-      if(content_cart.style.opacity == 1){
+      if (content_cart.style.opacity == 1) {
         content_cart.style.transform = "translateY(-2rem)";
         content_cart.style.opacity = 0;
         content_cart.style.zIndex = 0;
+
+        setTimeout(function () {
+          content_cart.style.display = "none";
+        }, 500);
       }
     })
 
-    // window.addEventListener("resize", function() {
-    //   if (document.body.clientWidth > 850) {
+    //width 850px
+    if (document.body.clientWidth >= 850) {
+      valeurResize = true;
 
+      containerImg.onclick = function (e) {
+        shadow.style.height = document.body.clientHeight + "px";
+        shadow.style.display = "block";
 
-    //     console.log("bonjour")
-    //   } 
-    //   else {
-    //     console.log("au revoir")
-    //   }
-    // })
+        // i = e.target.attributes["index-data"].value;
+        // index = e.target.attributes["index-data"].value;
+        // transform = i * -100;
 
-    if (document.body.clientWidth > 850) {
-        var clone = carousel.firstElementChild.cloneNode(true)
-        carousel.appendChild(clone);
-        carousel.insertBefore(clone, carousel.childNodes[1] )
-
-
-        console.log("bonjour")
-      } 
-      else {
-        console.log("au revoir")
+        // console.log("i = " + i)
+        // console.log("index = " + index)
+        // console.log("transform = " + transform)
       }
+    }
+
+    //onResize
+    window.addEventListener("resize", function () {
+      if (document.body.clientWidth > 850 && valeurResize == false) {
+        valeurResize = true;
+        menu.style.removeProperty("height");
+
+        for (var i = 0; i < divImg.childElementCount; i++) {
+          var divImgClone = divImg.childNodes[i];
+          var cln = divImgClone.cloneNode(true);
+          cln.classList.remove('content__carousel__containerImg__img');
+          cln.classList.add('content__carousel__containerImg__img__thumbnails');
+          cln.setAttribute("index-data", index);
+          index++;
+
+          divImgThumbnails.appendChild(cln);
+          carousel.appendChild(divImgThumbnails);
+        }
+
+        var childActive = transform / -100;
+        divImgThumbnails.childNodes[childActive].classList.add('active');
+
+        lastElement = divImgThumbnails.childNodes[childActive];
+      }
+
+      else if (document.body.clientWidth < 850 && valeurResize == true) {
+        valeurResize = false;
+        menu.style.height = document.body.clientHeight + "px";
+
+        divImgThumbnails.innerHTML = "";
+        carousel.removeChild(divImgThumbnails);
+
+        index = 0;
+      }
+    })
+
+    // JSON
+    fetch("data.json")
+      .then(response => response.json())
+      .then(data => {
+
+        //images
+        for (let j = 0; j < data[0].images.length; j++) {
+          var newImg = document.createElement("img");
+          newImg.src = data[0].images[j];
+          newImg.classList.add("content__carousel__containerImg__img");
+          divImg.appendChild(newImg);
+
+          if (document.body.clientWidth >= 850) {
+            var newImgThumbs = document.createElement("img");
+            newImgThumbs.src = data[0].images[j];
+            newImgThumbs.classList.add("content__carousel__containerImg__img__thumbnails");
+            divImgThumbnails.appendChild(newImgThumbs);
+            newImgThumbs.setAttribute("index-data", index);
+            divImgThumbnails.firstChild.classList.add('active');
+
+            index++;
+          }
+        }
+
+        //name model
+        nameProduct.innerText = data[0].name;
+
+        //collection model
+        collectionProduct.innerText = data[0].collection;
+
+        //price model
+        priceModel = data[0].price;
+        priceProduct.innerText = '$' + data[0].price.toFixed(2);
+        priceCard.innerText = '$' + data[0].price.toFixed(2) + " x ";
+
+        //discount model
+        if (data[0].discount) {
+          discountProduct.innerText = data[0].discount + "%";
+        }
+
+        //old price model
+        if (data[0].old_price) {
+          oldPriceProduct.innerText = '$' + data[0].old_price.toFixed(2);
+        }
+
+        //description model
+        descriptionProduct.innerText = data[0].description;
+      })
+
+    // click carousel thumbnails
+    divImgThumbnails.onclick = function (e) {
+      if (e.target != divImgThumbnails) {
+        i = e.target.attributes["index-data"].value;
+        index = e.target.attributes["index-data"].value;
+        transform = i * -100;
+
+        var transform_value = (e.target.attributes["index-data"].value) * -100;
+
+        divImg.style.transform = "translateX(" + transform_value + "%)";
+
+        e.target.classList.add('active');
+
+
+        if (lastElement != e.target && lastElement != undefined) {
+          lastElement.classList.remove('active');
+        }
+        lastElement = e.target;
+      }
+    };
+
+    window.addEventListener("load", function (event) {
+      lastElement = divImgThumbnails.firstChild;
+    });
+
+    //carousel
+    next.addEventListener('click', function () {
+
+      if (i < img.length - 1) {
+        transform -= 100;
+        divImg.style.transform = "translateX(" + transform + "%)";
+        i++;
+      }
+      else if (i == img.length - 1) {
+        divImg.style.transform = "translateX(0%)";
+        transform = 0;
+        i = 0;
+      }
+    })
+
+    previous.addEventListener('click', function () {
+
+      if (i == 0) {
+        transform = (img.length - 1) * -100;
+        i = img.length - 1;
+        divImg.style.transform = "translateX(" + transform + "%)";
+      }
+      else if (i > 0) {
+        transform -= -100;
+        divImg.style.transform = "translateX(" + transform + "%)";
+        i--;
+      }
+    })
+
   </script>
 </body>
 

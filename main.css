@@ -341,6 +341,14 @@
   transition: 0.5s ease;
 }
 
+.content__carousel__containerImg__div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
 .content__carousel__containerImg__img {
   background-size: cover;
   width: 100%;
@@ -517,9 +525,7 @@
   opacity: 0;
   -webkit-transition: 0.5s ease;
   transition: 0.5s ease;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -618,7 +624,7 @@
     height: unset;
     position: relative;
     display: block;
-    margin-right: 2rem;
+    margin-right: 4rem;
   }
   .content__carousel__arrow {
     display: none;
@@ -627,6 +633,7 @@
     -webkit-transition: 0.5s ease;
     transition: 0.5s ease;
     width: 100%;
+    min-width: 15rem;
     max-width: 32rem;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -634,38 +641,58 @@
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
     row-gap: 1rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    overflow: hidden;
+  }
+  .content__carousel__containerImg__div {
+    max-width: 32rem;
+    max-height: 32rem;
+  }
+  .content__carousel__containerImg__divThumbnails {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
   }
   .content__carousel__containerImg__img {
     background-size: cover;
-    width: inherit;
-    height: auto;
+    width: 100%;
+    height: 100%;
     -webkit-transition: 0.5s ease;
     transition: 0.5s ease;
-  }
-  .content__carousel__containerImg__img:first-child {
     border-radius: 2rem;
   }
-  .content__carousel__containerImg__img:not(:first-child) {
+  .content__carousel__containerImg__img__thumbnails {
     width: 21%;
     max-width: 7rem;
     border-radius: 0.5rem;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
   }
-  .content__product {
+  .content__carousel__containerImg__img__thumbnails:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  __product {
     width: 85%;
-    padding-right: 5rem;
   }
-  .content__product__collection {
+  __product__collection {
     margin: 0;
     margin-top: 0;
   }
-  .content__product__name {
+  __product__name {
     margin-top: 1rem;
     margin-bottom: 2.5rem;
   }
-  .content__product__quantity_price {
+  __product__quantity_price {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -677,7 +704,7 @@
             column-gap: 0.75rem;
     width: 25rem;
   }
-  .content__product__quantity_price__first {
+  __product__quantity_price__first {
     width: 7rem;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
@@ -687,42 +714,42 @@
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
-  .content__product__quantity_price__first__price {
+  __product__quantity_price__first__price {
     margin-right: 0;
   }
-  .content__product__quantity_price__first__oldprice {
+  __product__quantity_price__first__oldprice {
     text-align: left;
   }
-  .content__product__quantity_price__second {
+  __product__quantity_price__second {
     width: 7rem;
     padding: 0.5rem 0rem;
     margin: 0;
   }
-  .content__product__quantity_price__second__quantity {
+  __product__quantity_price__second__quantity {
     font-weight: 700;
     font-size: 12px;
   }
-  .content__product__quantity_price__second__plus, .content__product__quantity_price__second__minus {
+  __product__quantity_price__second__plus, __product__quantity_price__second__minus {
     cursor: pointer;
     padding: 0.5rem;
     -ms-touch-action: manipulation;
         touch-action: manipulation;
   }
-  .content__product__quantity_price__third {
+  __product__quantity_price__third {
     width: 16rem;
     margin-bottom: 0;
   }
-  .content__product__quantity_price__third__cart {
+  __product__quantity_price__third__cart {
     color: white;
     margin-right: 0.25rem;
   }
-  .content__product__quantity_price__third__add {
+  __product__quantity_price__third__add {
     font-weight: 700;
   }
-  .content__product__quantity_price__third:hover {
+  __product__quantity_price__third:hover {
     background-color: #ffa35c;
   }
-  .content__cart {
+  __cart {
     position: absolute;
     width: 23rem;
     height: 14rem;
@@ -748,48 +775,25 @@
     -webkit-box-shadow: 0px 2px 10px black;
             box-shadow: 0px 2px 10px black;
   }
-  .content__cart__p {
+  __cart__p {
     font-weight: 700;
     text-transform: capitalize;
     padding: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.116);
   }
-  .content__cart__nb {
-    -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    padding: 0 1rem;
-  }
-  .content__cart__nb__imgProduct {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 0.25rem;
-    margin-right: 1rem;
-  }
-  .content__cart__nb p {
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  .content__cart__nb__price {
+  __cart__nb__price {
     -webkit-box-flex: 1;
         -ms-flex-positive: 1;
             flex-grow: 1;
   }
-  .content__cart__nb__price__detailsCart {
+  __cart__nb__price__detailsCart {
     display: none;
   }
-  .content__cart__nb__delete {
+  __cart__nb__delete {
     cursor: pointer;
     display: none;
   }
-  .content__cart__checkoutCart {
+  __cart__checkoutCart {
     font-family: "Kumbh Sans";
     border: 1px solid gray;
     border-radius: 0.5rem;
@@ -800,15 +804,20 @@
     cursor: pointer;
     display: none;
   }
-  #shadow {
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    background-color: black;
-    opacity: 0.3;
-    z-index: 9;
-    display: none;
-  }
+}
+
+#shadow {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  background-color: black;
+  opacity: 0.3;
+  z-index: 9;
+  display: none;
+}
+
+.active {
+  border: 3px solid #ff7d1a;
 }
 
 @media screen and (max-width: 1240px) {
