@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .boxDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 7rem;
+        height: 3rem;
+        border: 1px solid black;
+    }
+    
+    #paragraph {
+        padding: 0.5rem;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <div id="firstDiv" class="boxDiv">
+            <p id="paragraph">Drag me !</p>
+        </div>
+        <div id="secondDiv" class="boxDiv"></div>
+        <div id="thirdDiv" class="boxDiv"></div>
+    </div>
+
+    <div id="move"></div>
+
+    <script>
+        let paragraph = document.getElementById('paragraph');
+        let firstDiv = document.getElementById('firstDiv');
+        let secondDiv = document.getElementById('secondDiv');
+        let thirdDiv = document.getElementById('thirdDiv');
+        let container = document.getElementById('container');
+
+        var coorEnter;
+        var coordinates = 0;
+        var coordinates1;
+
+        //draggable
+        paragraph.draggable = "true";
+
+        //ondragstart
+        paragraph.ondragstart = function getData(e) {
+            e.dataTransfer.setData("data", e.target.id);
+        }
+
+        //ondrag
+
+        //ondrop
+        firstDiv.ondrop = function setData(e) {
+            e.preventDefault();
+            var data = e.dataTransfer.getData("data");
+            e.target.appendChild(document.getElementById(data))
+        }
+        secondDiv.ondrop = function setData(e) {
+            e.preventDefault();
+            var data = e.dataTransfer.getData("data");
+            e.target.appendChild(document.getElementById(data))
+        }
+
+        //ondragover
+        firstDiv.ondragover = function ondragover(e) {
+            e.preventDefault();
+        }
+        secondDiv.ondragover = function ondragover(e) {
+            e.preventDefault();
+        }
+
+        //MOVE ELEMENTS
+
+        //draggable
+        thirdDiv.draggable = "true";
+
+        thirdDiv.ondragstart = function saveFirstCoor(e) {
+            coorEnter = e.clientX;
+            console.log("entree : " + coorEnter)
+        }
+
+        //ondrag
+        thirdDiv.ondrag = function moveElements(e) {
+            coordinates = e.clientX - coorEnter;
+
+            if (coordinates1 == undefined) {
+                container.style.transform = "translateX(" + coordinates + "px)";
+            } else {
+                var coorFinal = coordinates1 + coordinates;
+                container.style.transform = "translateX(" + coorFinal + "px)";
+                // console.log(coorFinal)
+            }
+
+        }
+
+        //ondrop
+        thirdDiv.ondrop = function stopMoveElements(e) {
+            e.preventDefault();
+
+            if (coordinates1 == undefined) {
+                container.style.transform = "translateX(" + coordinates + "px)";
+                coordinates1 = coordinates;
+            } else {
+                var coorFinal = coordinates1 + coordinates;
+                container.style.transform = "translateX(" + coorFinal + "px)";
+                coordinates1 = coorFinal;
+            }
+            console.log("coordinates1 : " + coordinates1);
+        }
+
+        //ondragover
+        thirdDiv.ondragover = function stopDrag(e) {
+            e.preventDefault();
+        }
+
+        thirdDiv.ondragleave = function stopMoveElements(e) {
+            e.preventDefault();
+            console.log("plus sur l'élément");
+        }
+    </script>
+</body>
+
+</html>
