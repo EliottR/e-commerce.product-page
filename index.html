@@ -92,6 +92,10 @@
     </div>
   </main>
   <div id="shadow"></div>
+  <div id="toastCart">
+    <img src="images/bag-check.svg" alt="">
+    <p>Added to cart !</p>
+  </div>
 
 
   <footer class="footer">
@@ -156,6 +160,8 @@
 
     var priceModel;
 
+    var toastCart = document.getElementById('toastCart')
+
 
     //button cart
     buy.addEventListener('click', function() {
@@ -180,6 +186,17 @@
         div.appendChild(imgCart);
 
         nameModel.innerText = "Limited Edition Sneakers";
+
+
+        if (toastCart.style != 1) {
+          toastCart.style.transform = "translateX(0)";
+          toastCart.style.opacity = 1;
+
+          setTimeout(() => {
+            toastCart.style.removeProperty('transform')
+            toastCart.style.removeProperty('opacity')
+          }, 2500);
+        }
       }
     })
 
