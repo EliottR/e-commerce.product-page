@@ -191,10 +191,14 @@
         if (toastCart.style != 1) {
           toastCart.style.transform = "translateX(0)";
           toastCart.style.opacity = 1;
+          toastCart.style.zIndex = 100;
+
 
           setTimeout(() => {
             toastCart.style.removeProperty('transform')
             toastCart.style.removeProperty('opacity')
+            toastCart.style.removeProperty('zIndex')
+
           }, 2500);
         }
       }

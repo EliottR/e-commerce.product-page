@@ -433,6 +433,7 @@
   transform: translateY(-50%);
   opacity: 0;
   transition: 0.5s ease;
+  z-index: 0;
   img {
     width: 2rem;
     margin-right: 2rem;

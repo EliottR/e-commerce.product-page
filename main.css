@@ -856,6 +856,7 @@
   opacity: 0;
   -webkit-transition: 0.5s ease;
   transition: 0.5s ease;
+  z-index: 0;
 }
 
 #toastCart img {
