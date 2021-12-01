@@ -12,7 +12,7 @@
         display: flex;
         gap: 1rem;
     }
-    
+
     .boxDiv {
         display: flex;
         justify-content: center;
@@ -21,7 +21,7 @@
         height: 3rem;
         border: 1px solid black;
     }
-    
+
     #paragraph {
         padding: 0.5rem;
     }
@@ -81,52 +81,71 @@
 
         //MOVE ELEMENTS
 
-        //draggable
-        thirdDiv.draggable = "true";
+        // //draggable
+        // thirdDiv.draggable = "true";
 
-        thirdDiv.ondragstart = function saveFirstCoor(e) {
-            coorEnter = e.clientX;
-            console.log("entree : " + coorEnter)
-        }
+        // thirdDiv.ondragstart = function saveFirstCoor(e) {
+        //     coorEnter = e.clientX;
+        //     console.log("entree : " + coorEnter)
+        // }
 
-        //ondrag
-        thirdDiv.ondrag = function moveElements(e) {
-            coordinates = e.clientX - coorEnter;
+        // //ondrag
+        // thirdDiv.ondrag = function moveElements(e) {
+        //     coordinates = e.clientX - coorEnter;
 
-            if (coordinates1 == undefined) {
-                container.style.transform = "translateX(" + coordinates + "px)";
-            } else {
-                var coorFinal = coordinates1 + coordinates;
-                container.style.transform = "translateX(" + coorFinal + "px)";
-                // console.log(coorFinal)
+        //     if (coordinates1 == undefined) {
+        //         container.style.transform = "translateX(" + coordinates + "px)";
+        //     } else {
+        //         var coorFinal = coordinates1 + coordinates;
+        //         container.style.transform = "translateX(" + coorFinal + "px)";
+        //         // console.log(coorFinal)
+        //     }
+
+        // }
+
+        // //ondrop
+        // thirdDiv.ondrop = function stopMoveElements(e) {
+        //     e.preventDefault();
+
+        //     if (coordinates1 == undefined) {
+        //         container.style.transform = "translateX(" + coordinates + "px)";
+        //         coordinates1 = coordinates;
+        //     } else {
+        //         var coorFinal = coordinates1 + coordinates;
+        //         container.style.transform = "translateX(" + coorFinal + "px)";
+        //         coordinates1 = coorFinal;
+        //     }
+        //     console.log("coordinates1 : " + coordinates1);
+        // }
+
+        // //ondragover
+        // thirdDiv.ondragover = function stopDrag(e) {
+        //     e.preventDefault();
+        // }
+
+        // thirdDiv.ondragleave = function stopMoveElements(e) {
+        //     e.preventDefault();
+        //     console.log("plus sur l'élément");
+        // }
+
+
+        //mousse move
+        let pos = { left: 0, x: 0 }
+
+        thirdDiv.onmousemove = function moveElements(e) {
+            pos = {
+                left: e.target.scrollLeft,
+                x: e.clientX
             }
 
+            console.log(pos)
+
+            pos.left = pos.x - pos.left;
         }
 
-        //ondrop
-        thirdDiv.ondrop = function stopMoveElements(e) {
-            e.preventDefault();
-
-            if (coordinates1 == undefined) {
-                container.style.transform = "translateX(" + coordinates + "px)";
-                coordinates1 = coordinates;
-            } else {
-                var coorFinal = coordinates1 + coordinates;
-                container.style.transform = "translateX(" + coorFinal + "px)";
-                coordinates1 = coorFinal;
-            }
-            console.log("coordinates1 : " + coordinates1);
-        }
-
-        //ondragover
-        thirdDiv.ondragover = function stopDrag(e) {
-            e.preventDefault();
-        }
-
-        thirdDiv.ondragleave = function stopMoveElements(e) {
-            e.preventDefault();
-            console.log("plus sur l'élément");
-        }
+        // thirdDiv.onclick = function test(e) {
+        //     console.log(e)
+        // }
     </script>
 </body>
 

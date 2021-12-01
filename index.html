@@ -83,7 +83,8 @@
       <div id="contentNb" class="content__cart__nb">
         <div class="content__cart__nb__price">
           <p id="emptyCart" style="text-align: center;">Your cart is empty !</p>
-          <p id="detailsCart" class="content__cart__nb__price__detailsCart"><span id="name"></span><br><span id="priceCard"></span><span id="quantity"></span></p>
+          <p id="detailsCart" class="content__cart__nb__price__detailsCart"><span id="name"></span><br><span
+              id="priceCard"></span><span id="quantity"></span></p>
           <p id="priceTotal" class="content__cart__nb__price__total"></p>
         </div>
         <div id="deleteCart" class="content__cart__nb__delete"><img src="images/icon-delete.svg" alt=""></div>
@@ -97,9 +98,9 @@
     <p>Added to cart !</p>
   </div>
 
-
   <footer class="footer">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by <a href="#">Eliott Raheriarisoa</a>.
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by <a
+      href="#">Eliott Raheriarisoa</a>.
   </footer>
 
   <script>
@@ -164,7 +165,7 @@
 
 
     //button cart
-    buy.addEventListener('click', function() {
+    buy.addEventListener('click', function () {
 
       if (newNb != 0) {
         nbButton.innerText = newNb;
@@ -189,27 +190,30 @@
 
 
         if (toastCart.style != 1) {
-          toastCart.style.transform = "translateX(0)";
-          toastCart.style.opacity = 1;
-          toastCart.style.zIndex = 100;
+          toastCart.style.display = "flex";
 
+          setTimeout(() => {
+            toastCart.style.transform = "translateX(0)";
+            toastCart.style.opacity = 1;
+            toastCart.style.zIndex = 100;
+          }, 10);
 
           setTimeout(() => {
             toastCart.style.removeProperty('transform')
             toastCart.style.removeProperty('opacity')
             toastCart.style.removeProperty('zIndex')
-
+            toastCart.style.removeProperty('display');
           }, 2500);
         }
       }
     })
 
     //cart
-    cart.addEventListener('click', function() {
+    cart.addEventListener('click', function () {
       if (content_cart.style.opacity == 0) {
         content_cart.style.display = "flex";
 
-        setTimeout(function() {
+        setTimeout(function () {
           content_cart.style.transform = "translateY(0)";
           content_cart.style.opacity = 1;
           content_cart.style.zIndex = 10;
@@ -222,18 +226,18 @@
         content_cart.style.opacity = 0;
         content_cart.style.zIndex = 0;
 
-        setTimeout(function() {
+        setTimeout(function () {
           content_cart.style.display = "none";
         }, 500);
       }
     })
 
-    plus.addEventListener('click', function() {
+    plus.addEventListener('click', function () {
       number.innerText = parseInt(newNb) + 1;
       newNb = number.textContent;
     })
 
-    minus.addEventListener('click', function() {
+    minus.addEventListener('click', function () {
       if (number.textContent != 0) {
         number.innerText = parseInt(newNb) - 1;
         newNb = number.textContent;
@@ -241,7 +245,7 @@
     })
 
     //delete button
-    deleteCart.addEventListener('click', function() {
+    deleteCart.addEventListener('click', function () {
       number.innerText = 0;
       newNb = 0;
       quantity.innerText = 0;
@@ -258,7 +262,7 @@
     })
 
     //hamburger
-    hamburger.addEventListener('click', function() {
+    hamburger.addEventListener('click', function () {
       menu.style.height = document.body.clientHeight + "px";
       menu.style.transform = "translateX(0rem)";
       document.body.style.overflow = "hidden";
@@ -267,9 +271,9 @@
     })
 
     //cross
-    cross.addEventListener('click', function() {
+    cross.addEventListener('click', function () {
       menu.style.removeProperty("transform");
-      setTimeout(function() {
+      setTimeout(function () {
         menu.style.removeProperty("height");
       }, 500);
 
@@ -279,9 +283,9 @@
     })
 
     //shadow
-    shadow.addEventListener('click', function() {
+    shadow.addEventListener('click', function () {
       menu.style.removeProperty("transform");
-      setTimeout(function() {
+      setTimeout(function () {
         menu.style.removeProperty("height");
       }, 500);
       document.body.style.overflow = "scroll";
@@ -292,7 +296,7 @@
         content_cart.style.opacity = 0;
         content_cart.style.zIndex = 0;
 
-        setTimeout(function() {
+        setTimeout(function () {
           content_cart.style.display = "none";
         }, 500);
       }
@@ -301,23 +305,10 @@
     //width 850px
     if (document.body.clientWidth >= 850) {
       valeurResize = true;
-
-      // containerImg.onclick = function(e) {
-      // shadow.style.height = document.body.clientHeight + "px";
-      // shadow.style.display = "block";
-
-      // i = e.target.attributes["index-data"].value;
-      // index = e.target.attributes["index-data"].value;
-      // transform = i * -100;
-
-      // console.log("i = " + i)
-      // console.log("index = " + index)
-      // console.log("transform = " + transform)
-      // }
     }
 
     //onResize
-    window.addEventListener("resize", function() {
+    window.addEventListener("resize", function () {
       if (document.body.clientWidth > 850 && valeurResize == false) {
         valeurResize = true;
         menu.style.removeProperty("height");
@@ -399,7 +390,7 @@
       })
 
     // click carousel thumbnails
-    divImgThumbnails.onclick = function(e) {
+    divImgThumbnails.onclick = function (e) {
       if (e.target != divImgThumbnails) {
         i = e.target.attributes["index-data"].value;
         index = e.target.attributes["index-data"].value;
@@ -419,14 +410,13 @@
       }
     };
 
-    window.addEventListener("load", function(event) {
+    window.addEventListener("load", function (event) {
       lastElement = divImgThumbnails.firstChild;
     });
 
-    //disable drag image
 
     //carousel
-    next.addEventListener('click', function() {
+    next.addEventListener('click', function () {
 
       if (i < img.length - 1) {
         transform -= 100;
@@ -439,7 +429,7 @@
       }
     })
 
-    previous.addEventListener('click', function() {
+    previous.addEventListener('click', function () {
 
       if (i == 0) {
         transform = (img.length - 1) * -100;
@@ -451,6 +441,11 @@
         i--;
       }
     })
+
+
+    // document.body.onclick = function test(e) {
+    //   console.log(e.target)
+    // }
   </script>
 </body>
 

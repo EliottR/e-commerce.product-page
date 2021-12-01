@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    #container {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .boxDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 8rem;
+        height: 3rem;
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <div id="firstDiv" class="boxDiv">
+            <p id="paragraph">Drag me !</p>
+        </div>
+        <div id="secondDiv" class="boxDiv"></div>
+        <div id="thirdDiv" class="boxDiv"></div>
+
+    </div>
+
+    <script>
+        //variables
+        let container = document.getElementById('container');
+        let firstDiv = document.getElementById('firstDiv');
+        let secondDiv = document.getElementById('secondDiv');
+        let thirdDiv = document.getElementById('thirdDiv');
+        let paragraph = document.getElementById('paragraph');
+
+        //draggable
+        paragraph.draggable = 'true';
+
+
+
+        //ondragenter
+        paragraph.ondragstart = function transfer(e) {
+            e.dataTransfer.setData("dataDrag", e.target.id)
+        }
+
+        //ondragover
+        firstDiv.ondragover = function allowDrop(e) {
+            e.preventDefault();
+        }
+        secondDiv.ondragover = function allowDrop(e) {
+            e.preventDefault();
+        }
+
+        //ondrop
+        firstDiv.ondrop = function drop(e) {
+            e.preventDefault();
+            var data = e.dataTransfer.getData("dataDrag");
+            e.target.append(document.getElementById(data));
+        }
+        secondDiv.ondrop = function drop(e) {
+            e.preventDefault();
+            var data = e.dataTransfer.getData("dataDrag");
+            e.target.append(document.getElementById(data));
+        }
+
+
+        //variables
+        var saveFirst = 0;
+
+        //translate move drag
+        var coorEnter = 0;
+        var coordinates = 0;
+
+        thirdDiv.onmouseenter = function move(event) {
+
+            coorEnter = event.clientX;
+            console.log(coorEnter)
+        }
+
+        thirdDiv.onmouseenter = function saveFirst(event) {
+            saveFirst = event.clientX;
+            console.log(saveFirst)
+
+        }
+
+        thirdDiv.ondragstart = function test() {
+            return false;
+        }
+
+        thirdDiv.onclick = function testte() {
+            console.log(saveFirst)
+        }
+
+    </script>
+</body>
+
+</html>
